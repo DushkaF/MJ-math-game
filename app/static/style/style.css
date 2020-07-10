@@ -1,8 +1,9 @@
-*{
+* {
     box-sizing: border-box;
 }
-  
-html, body {
+
+html,
+body {
     width: 100%;
     height: 100%;
     background: lightgray;
@@ -11,7 +12,7 @@ html, body {
     font-family: var(--font-sans);
 }
 
-.main{
+.main {
     display: flex;
     margin: 10px auto;
     flex-direction: column;
@@ -20,16 +21,116 @@ html, body {
     align-items: center;
 }
 
-.laTeX_button{
+.gamePlace {
+    background-color: sandybrown;
+    width: 50%;
+    height: 70%;
     display: flex;
-    justify-content: center;
-    background: rgb(255, 105, 51);
-    border-radius: 10px;
-    text-align: center; 
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.TeX{
-    padding: 10px;
+.row {
+    height: 10%;
+    background-color: silver;
+    margin: 2px;
+}
+
+.operands {
+    display: flex;
+    flex-direction: row;
+}
+
+.opponentOp {
+    justify-content: flex-end;
+}
+
+.IOp {
+    justify-content: flex-start;
+}
+
+.operand {
+    margin: 2px;
+    width: 7%;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.ID {
+    flex-basis: 25%;
+    background-color: crimson;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.IDbox {
+    padding: 1px;
     display: inline-flex;
-    font-size: 40px;
+    font-size: 15px;
+}
+
+.valuePlace {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.valuesBox {
+    margin: 2px;
+    background-color: palegreen;
+    width: 30%;
+    display: flex;
+}
+
+.centerBox {
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoPlace {
+    width: 80%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: bisque;
+}
+
+.infoBox {
+    height: 40%;
+    text-align: center;
+    background-color: aquamarine;
+}
+
+.IVal {
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.opponentVal {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.value {
+    margin: 2px;
+    height: 10%;
+    background-color: cornflowerblue;
+    border-radius: 4px;
+}
+
+.TeX {
+    padding: 1px;
+    display: inline-flex;
+    font-size: 15px;
 }
