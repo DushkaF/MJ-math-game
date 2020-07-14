@@ -23,114 +23,209 @@ body {
 
 .gamePlace {
     background-color: sandybrown;
-    width: 50%;
-    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* in media */
 }
 
 .row {
-    height: 10%;
     background-color: silver;
     margin: 2px;
 }
 
 .operands {
+    height: 10%;
     display: flex;
     flex-direction: row;
-}
-
-.opponentOp {
-    justify-content: flex-end;
-}
-
-.IOp {
-    justify-content: flex-start;
+    /* in media */
 }
 
 .operand {
     margin: 2px;
-    width: 7%;
     background-color: aliceblue;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
     text-align: center;
 }
 
+
+/* in media operator for opponent and me*/
+
 .ID {
-    flex-basis: 25%;
     background-color: crimson;
     margin: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
     text-align: center;
+    /* in media */
 }
 
 .IDbox {
     padding: 1px;
     display: inline-flex;
-    font-size: 15px;
+    /* in media */
 }
 
 .valuePlace {
     flex-grow: 1;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    /* in media */
 }
 
 .valuesBox {
     margin: 2px;
     background-color: palegreen;
-    width: 30%;
     display: flex;
+    /* in media */
+}
+
+.infoPlace {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+    border-radius: 20px;
+    /* in media */
+}
+
+.infoBox {
+    padding: 1px;
+    display: inline-flex;
+    font-size: 50px;
+    display: inline-flex;
+}
+
+
+/* in media values for me and opponent */
+
+.value {
+    margin: 2px;
+    background-color: cornflowerblue;
+    /* in media */
+}
+
+.TeX {
+    padding: 1px;
+    display: inline-flex;
+    /* in media */
+}
+
+@media all and (orientation: landscape) {
+    .gamePlace {
+        width: 50%;
+        height: 70%;
+    }
+    .opponentOp {
+        justify-content: flex-end;
+    }
+    .IOp {
+        justify-content: flex-start;
+    }
+    .operand {
+        width: 7%;
+        border-radius: 10px;
+    }
+    .ID {
+        flex-basis: 25%;
+        border-radius: 10px;
+    }
+    .IDbox {
+        font-size: 15px;
+    }
+    .valuePlace {
+        flex-direction: row;
+    }
+    .valuesBox {
+        width: 30%;
+    }
+    .infoPlace {
+        width: 80%;
+        height: 25%;
+    }
+    .IVal {
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .opponentVal {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .value {
+        height: 10%;
+        border-radius: 4px;
+    }
+    .TeX {
+        font-size: 20px;
+    }
+    .mobile {
+        display: none;
+    }
+}
+
+@media all and (orientation: portrait) {
+    .gamePlace {
+        width: 100%;
+        height: 100%;
+    }
+    .operands {
+        justify-content: space-around;
+    }
+    .opponentOp {
+        flex-direction: row-reverse;
+    }
+    .IOp {
+        flex-direction: row;
+    }
+    .operand {
+        flex-basis: 100%;
+        border-radius: 20px;
+    }
+    .ID {
+        height: 10%;
+        border-radius: 20px;
+    }
+    .IDbox {
+        font-size: 40px;
+    }
+    .valuePlace {
+        flex-direction: column-reverse;
+    }
+    .valuesBox {
+        height: 40%;
+        align-content: stretch;
+        justify-content: flex-start;
+    }
+    .infoPlace {
+        width: 30%;
+        height: 50%;
+    }
+    .IVal {
+        flex-direction: row-reverse;
+        flex-wrap: wrap-reverse;
+    }
+    .opponentVal {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .value {
+        width: 49%;
+        border-radius: 10px;
+    }
+    .TeX {
+        font-size: 30px;
+    }
+    .desktop {
+        display: none;
+    }
 }
 
 .centerBox {
     flex-grow: 1;
     justify-content: center;
     align-items: center;
-}
-
-.infoPlace {
-    width: 80%;
-    height: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: bisque;
-}
-
-.infoBox {
-    height: 40%;
-    text-align: center;
-    background-color: aquamarine;
-}
-
-.IVal {
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.opponentVal {
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.value {
-    margin: 2px;
-    height: 10%;
-    background-color: cornflowerblue;
-    border-radius: 4px;
-}
-
-.TeX {
-    padding: 1px;
-    display: inline-flex;
-    font-size: 15px;
 }
