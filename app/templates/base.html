@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/base_style.css') }}" type="text/css" /> {% block style %} {% endblock %}
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+</head>
+
+<body>
+    <header>
+        <a href="https://vk.com/math_jokes00"><img id="label" src="{{ url_for('static', filename='img/label.png') }}" /></a>
+        <h1>Math Jokes Online Tournament - 2020</h1>
+    </header>
+    <div class="main">
+        {% block content %} {% endblock %}
+    </div>
+    <footer class="customFooter">
+        <p>О нас</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+@font-face {
+    font-family: Cambridge Round W01 Bold;
+    /* Гарнитура шрифта */
+    src: url(../fonts/15677.ttf);
+    /* Путь к файлу со шрифтом */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background: rgb(223, 228, 233);
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-sans);
+}
+
+header {
+    background: rgb(242, 246, 250);
+    height: 20%;
+    position: relative;
+    box-shadow: 0 1px 10px rgb(158, 158, 158);
+}
+
+header>h1 {
+    text-align: center;
+    position: absolute;
+    left: 20%;
+    width: 60%;
+    top: 40%;
+    height: 20%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: Cambridge Round W01 Bold;
+    font-size: 3.2vw;
+}
+
+header>a {
+    position: absolute;
+    height: 100%;
+    padding: 1vw;
+}
+
+#label {
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 17px rgb(50, 89, 197);
+    /* Параметры теней */
+}
+
+.main {
+    margin: auto;
+    height: 70%;
+}
+
+.customFooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer>p {
+    height: 5%;
+    color: dimgray;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-size: 20px;
+}

@@ -1,41 +1,27 @@
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
+.wrapper {
     width: 100%;
     height: 100%;
-    background: lightgray;
-    padding: 0;
-    margin: 0;
-    font-family: var(--font-sans);
-}
-
-.main {
     display: flex;
-    margin: 10px auto;
     flex-direction: column;
-    height: 100%;
     justify-content: center;
     align-items: center;
 }
 
 .gamePlace {
-    background-color: sandybrown;
+    background-color: LemonChiffon;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 5px 17px #333;
     /* in media */
 }
 
 .row {
-    background-color: silver;
     margin: 2px;
 }
 
 .operands {
-    height: 10%;
     display: flex;
     flex-direction: row;
     /* in media */
@@ -43,7 +29,7 @@ body {
 
 .operand {
     margin: 2px;
-    background-color: aliceblue;
+    background-color: DeepSkyBlue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,8 +64,15 @@ body {
 
 .valuesBox {
     margin: 2px;
-    background-color: palegreen;
     display: flex;
+    /* in media */
+}
+
+
+/* in media values for me and opponent */
+
+.value {
+    background-color: cornflowerblue;
     /* in media */
 }
 
@@ -100,15 +93,6 @@ body {
     display: inline-flex;
 }
 
-
-/* in media values for me and opponent */
-
-.value {
-    margin: 2px;
-    background-color: cornflowerblue;
-    /* in media */
-}
-
 .TeX {
     padding: 1px;
     display: inline-flex;
@@ -116,15 +100,19 @@ body {
 }
 
 @media all and (orientation: landscape) {
+    /* для десктопов */
     .gamePlace {
-        width: 50%;
-        height: 70%;
+        width: 75%;
+        height: 90%;
     }
     .opponentOp {
         justify-content: flex-end;
     }
     .IOp {
         justify-content: flex-start;
+    }
+    .operands {
+        height: 15%;
     }
     .operand {
         width: 7%;
@@ -144,23 +132,24 @@ body {
         width: 30%;
     }
     .infoPlace {
-        width: 80%;
-        height: 25%;
+        width: 50%;
+        height: 20%;
     }
     .IVal {
         flex-direction: column;
         justify-content: flex-end;
     }
+    .value {
+        margin: 5px;
+        height: 13%;
+        border-radius: 4px;
+    }
     .opponentVal {
         flex-direction: column;
         justify-content: flex-start;
     }
-    .value {
-        height: 10%;
-        border-radius: 4px;
-    }
     .TeX {
-        font-size: 20px;
+        font-size: 25px;
     }
     .mobile {
         display: none;
@@ -168,11 +157,20 @@ body {
 }
 
 @media all and (orientation: portrait) {
-    .gamePlace {
-        width: 100%;
+    /* для мобильных */
+    header,
+    .customFooter {
+        display: none;
+    }
+    .main {
         height: 100%;
     }
+    .gamePlace {
+        width: 100%;
+        height: 95%;
+    }
     .operands {
+        height: 10%;
         justify-content: space-around;
     }
     .opponentOp {
@@ -213,6 +211,7 @@ body {
         flex-wrap: wrap;
     }
     .value {
+        margin: 2px;
         width: 49%;
         border-radius: 10px;
     }

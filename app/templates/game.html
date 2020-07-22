@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block style %} 
+<link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/game_style.css') }}"
+      type="text/css"
+    />
+{% endblock %}
+ {% block title %} Game Padge {% endblock %} {% block content %}
+
+<div class="wrapper">
+    <div class="gamePlace">
+    <div class="ID opponentID mobile">
+        <div class="IDbox">Opponent ID</div>
+    </div>
+    <div class="row operands opponentOp">
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$+$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$-$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$*$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$d \over dx$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$sp$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$df$$
+            </div>
+        </div>
+        <div class="ID opponentID desktop">
+            <div class="IDbox">Opponent ID</div>
+        </div>
+    </div>
+    <div class="row valuePlace">
+        <div class="valuesBox IVal">
+            <div class="value"></div>
+            <div class="value"></div>
+            <div class="value"></div>
+            <div class="value"></div>
+            <div class="value"></div>
+        </div>
+
+        <div class="valuesBox centerBox">
+            <div class="infoPlace">
+                <div class="infoBox time">0:15</div>
+            </div>
+        </div>
+
+        <div class="valuesBox opponentVal">
+            <div class="value"></div>
+            <div class="value"></div>
+            <div class="value"></div>
+            <div class="value"></div>
+            <div class="value"></div>
+        </div>
+    </div>
+    <div class="row operands IOp">
+        <div class="ID IID desktop">
+            <div class="IDbox">My ID</div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$+$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$-$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$*$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$d \over dx$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$sp$$
+            </div>
+        </div>
+        <div class="operand" id="D">
+            <div class="TeX">
+                $$df$$
+            </div>
+        </div>
+    </div>
+    <div class="ID IID mobile">
+        <div class="IDbox">My ID</div>
+    </div>
+</div></div>
+
+{% endblock %}
