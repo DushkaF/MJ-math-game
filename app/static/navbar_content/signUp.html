@@ -8,25 +8,26 @@
 
 <body>
     <div id="navContent">
-        <div class="form container-fluid d-flex flex-column align-items-center justify-content-around">
-            <h2 сlass="text-justify display-4">Форма для регистрации</h2>
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
+        <div class="form d-flex flex-column align-items-center justify-content-around">
+            <h2 class="text-center display-6">Форма регистрации</h2>
+            <form class="inputs-field" action="signUp" method="post">
+                <div class="alert alert-danger mb-1 p-2 d-none" role="alert"></div>
+                <div class="form-group mb-1">
+                    <label for="">Login</label>
+                    <input type="email" class="form-control" id="login" name="username" aria-describedby="emailHelp">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                <div class="form-group mb-1">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Retype password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                <div class="form-group mb-1">
+                    <label for="">Retype password</label>
+                    <input type="password" class="form-control" id="retPassword">
                 </div>
-                <button type="button" class="btn btn-outline-success">Submit</button>
+                <button type="button" class="btn btn-outline-success mt-3 no-radius" id="signSubmit">Submit</button>
             </form>
+            <div id="success" href="{{ url_for('static', filename='navbar_content/signUpSuccess.html') }}"></div>
+            <div id="fail" href="{{ url_for('static', filename='navbar_content/signUpFail.html') }}"></div>
         </div>
     </div>
 </body>

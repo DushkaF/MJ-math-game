@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Cache-Control" content="no-cache" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/base_style.css') }}" type="text/css" /> {% block style %} {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/base_style.css') }}" type="text/css" />
+    {% block style %} {% endblock %}
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -18,7 +19,8 @@
 
 <body>
     <header>
-        <a href="https://vk.com/math_jokes00"><img id="label" src="{{ url_for('static', filename='img/label.png') }}" /></a>
+        <a href="https://vk.com/math_jokes00"><img id="label"
+                src="{{ url_for('static', filename='img/label.png') }}" /></a>
         <h1>Math Jokes Online Tournament - 2020</h1>
     </header>
     <div class="main">
