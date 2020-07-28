@@ -1,20 +1,3 @@
-/*window.onload = function() { // Событие страница загружена
-    document.getElementById('D').onclick = function() { Hidden() };
-}
-
-function Hidden() {
-    document.getElementById('D').style.backgroundColor = '#696969';
-    console.log("Click");
-    sendRequest();
-}
-
-function sendRequest() {
-    var request = new XMLHttpRequest();
-
-    request.open('GET', '/request');
-    request.send("Hello AJAX");
-}*/
-
 $(window).on("load", function () {
   $("#firstLook").trigger("click");
 });
@@ -27,8 +10,12 @@ $(document).ready(function () {
   });
 
   $(document).on("click", "#signSubmit", function () {
-    console.log("pass");
     sendSignUp();
+    return false;
+  });
+
+  $(document).on("click", "#logSubmit", function () {
+    logIn();
     return false;
   });
 });
@@ -60,17 +47,64 @@ function loadContentDiv(href, id, hideFunc, endFunc) {
   }
 }
 
+function logIn() {
+  var form = $("form");
+  if (!checkInput()) {
+    return;
+  }
+  let loginSimbCheck = checkSimbol($("#login"));
+  let passwordSimbCheck = checkSimbol($("#password"), loginSimbCheck);
+  if (!loginSimbCheck || !passwordSimbCheck) {
+    return;
+  }
+
+  var formData = {};
+  formData[$("#login").attr("name")] = String($("#login").val());
+  formData[$("#password").attr("name")] = String($("#password").val());
+
+  $.post("/logIn", formData, function (data) {
+    var statusCode = data["code"];
+    if (statusCode == 200) {
+      $(".alert").addClass("d-none");
+      let viewAlert = "#success";
+      loadContentDiv($(viewAlert).attr("href"), "#navContent", false);
+
+      let delay = setTimeout(function () {
+        loadNextPage();
+      }, 5000);
+      $(document).on("click", "#nextButton", function () {
+        clearTimeout(delay);
+        loadNextPage();
+        return false;
+      });
+      function loadNextPage() {
+        loadContentDiv($("#nextPage").attr("href"), "#navContent", true);
+      }
+    } else if (statusCode == 402) {
+      $(".alert").removeClass("d-none");
+      $(".alert").text("Нет пользователя с такими данными");
+    }
+  });
+}
+
 function sendSignUp() {
   var form = $("form");
   if (!checkInput()) {
     return;
   }
+  let loginSimbCheck = checkSimbol($("#login"));
+  let passwordSimbCheck = checkSimbol($("#password"), loginSimbCheck);
+  if (!loginSimbCheck || !passwordSimbCheck) {
+    return;
+  }
   if (!checkPass()) {
     return;
   }
+
   var formData = {};
   formData[$("#login").attr("name")] = String($("#login").val());
   formData[$("#password").attr("name")] = String($("#password").val());
+
   $.post("/signUp", formData, function (data) {
     var statusCode = data["code"];
     var status = "";
@@ -79,9 +113,22 @@ function sendSignUp() {
     } else if (statusCode == 405) {
       status = "fail";
     }
-    alert(status);
     viewAlert = "#".concat(status);
+    console.log(viewAlert);
     loadContentDiv($(viewAlert).attr("href"), "#navContent", false);
+
+    let delay = setTimeout(function () {
+      loadNextPage();
+    }, 5000);
+    $(document).on("click", "#nextButton", function () {
+      clearTimeout(delay);
+      loadNextPage();
+      return false;
+    });
+
+    function loadNextPage() {
+      loadContentDiv($("#nextPage").attr("href"), "#navContent", true);
+    }
   });
 }
 
@@ -122,6 +169,24 @@ function checkPass() {
     retPassword.addClass("is-invalid");
     $(".alert").removeClass("d-none");
     $(".alert").text("Проверь пароль!");
+    return false;
+  }
+}
+
+// проверка на допустимые символы
+function checkSimbol(obj, err = true) {
+  let myRe = new RegExp("[^a-zA-Z0-9]+");
+  let text = obj.val();
+  if (!myRe.test(text)) {
+    if (err) {
+      $(".alert").addClass("d-none");
+    }
+    obj.removeClass("is-invalid");
+    return true;
+  } else {
+    obj.addClass("is-invalid");
+    $(".alert").removeClass("d-none");
+    $(".alert").text("Поле содержит недопустимые символы!");
     return false;
   }
 }

@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
     <div id="navContent">
-        <h1>Форма для входа</h1>
-    </div>
+        <div class="form d-flex flex-column align-items-center justify-content-around m-5">
+            <h2 class="text-center display-6">Вход</h2>
+            <form class="inputs-field" action="logIn" method="post">
+                <div class="alert alert-danger mb-1 p-2 d-none" role="alert"></div>
+                <div class="form-group mb-1">
+                    <label for="">Login</label>
+                    <input type="text" class="form-control" id="login" name="username" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group mb-1">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="button" class="btn btn-outline-success mt-3 no-radius" id="logSubmit">Submit</button>
+            </form>
+            <div id="success" href="static/alerts/logInSuccess.html"></div>
+            <div id="fail" href="static/alerts/logInFail.html"></div>
+        </div>
 </body>
+
 </html>
