@@ -1,8 +1,10 @@
-from app import app
+from app import app, waiters
 from flask import render_template, send_file
 
 @app.route("/")
 def index():
+    print(waiters)
+    print(id(waiters))
     return render_template("index.html")
 
 @app.route("/game")

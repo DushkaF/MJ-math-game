@@ -5,6 +5,10 @@ $(window).on("load", function () {
 $(document).ready(function () {
   console.log("Ready");
 
+  setInterval(function () {
+    checkWaitRoom();
+  }, 5000);
+
   $(".navClickable").click(function () {
     return loadNavDiv($(this));
   });
@@ -18,7 +22,27 @@ $(document).ready(function () {
     logIn();
     return false;
   });
+
+  $(document).on("click", "#exit", function () {
+    profileExit();
+    return false;
+  });
 });
+
+function checkWaitRoom() {
+  $.get("/waitRoom", function (data) {
+    let img = $("#MJ-label");
+    if (
+      data["count"] > 0 &&
+      (window.lastStateRoom <= 0 || window.lastStateRoom == undefined)
+    ) {
+      img.attr("src", img.attr("src-is-any"));
+    } else if (data["count"] <= 0 && window.lastStateRoom > 0) {
+      img.attr("src", img.attr("src-is-empty"));
+    }
+    window.lastStateRoom = data["count"];
+  });
+}
 
 function loadNavDiv(doc) {
   loadContentDiv(doc.attr("href"), "#navContent", true, showNewContent());
@@ -47,6 +71,16 @@ function loadContentDiv(href, id, hideFunc, endFunc) {
   }
 }
 
+function profileExit() {
+  $.get("/exit", function (data) {
+    if (data["code"] == 200) {
+      $("#icon").addClass("d-none");
+      $("#authorisation").removeClass("d-none");
+      $.removeCookie("login");
+    }
+  });
+}
+
 function logIn() {
   var form = $("form");
   if (!checkInput()) {
@@ -59,12 +93,22 @@ function logIn() {
   }
 
   var formData = {};
-  formData[$("#login").attr("name")] = String($("#login").val());
+  let login = String($("#login").val());
+  formData[$("#login").attr("name")] = login;
   formData[$("#password").attr("name")] = String($("#password").val());
 
   $.post("/logIn", formData, function (data) {
     var statusCode = data["code"];
     if (statusCode == 200) {
+      // cookie
+      $.cookie("login", login, { expires: 1, path: "/" });
+      $("#icon").removeClass("d-none");
+      $("#icon-initials").text(function () {
+        return login[0].toUpperCase();
+      });
+      $("#icon-name").text(login);
+      $("#authorisation").addClass("d-none");
+
       $(".alert").addClass("d-none");
       let viewAlert = "#success";
       loadContentDiv($(viewAlert).attr("href"), "#navContent", false);

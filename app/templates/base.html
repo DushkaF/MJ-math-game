@@ -11,6 +11,8 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='js/jquery-cookie-master/src/jquery.cookie.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <title>
         {% block title %} {% endblock %}
@@ -19,8 +21,10 @@
 
 <body>
     <header>
-        <a href="https://vk.com/math_jokes00"><img id="label"
-                src="{{ url_for('static', filename='img/label.png') }}" /></a>
+        <a href="https://vk.com/math_jokes00"><img id="MJ-label"
+                src="{{ url_for('static', filename='img/white_label.png') }}"
+                src-is-any="{{ url_for('static', filename='img/label.png') }}"
+                src-is-empty="{{ url_for('static', filename='img/white_label.png') }}" /></a>
         <h1>Math Jokes Online Tournament - 2020</h1>
     </header>
     <div class="main">
