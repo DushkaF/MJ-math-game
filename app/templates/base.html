@@ -39,19 +39,21 @@
 </head>
 
 <body>
-    <header>
-        <a href="https://vk.com/math_jokes00"><img id="MJ-label"
-                src="{{ url_for('static', filename='img/white_label.png') }}"
-                src-is-any="{{ url_for('static', filename='img/label.png') }}"
-                src-is-empty="{{ url_for('static', filename='img/white_label.png') }}" /></a>
-        <h1>Math Jokes Online Tournament - 2020</h1>
-    </header>
-    <div class="main">
-        {% block content %} {% endblock %}
+    <div class="all-wrapp">
+        <header>
+            <a href="https://vk.com/math_jokes00"><img id="MJ-label"
+                    src="{{ url_for('static', filename='img/white_label.png') }}"
+                    src-is-any="{{ url_for('static', filename='img/label.png') }}"
+                    src-is-empty="{{ url_for('static', filename='img/white_label.png') }}" /></a>
+            <h1>Math Jokes Online Tournament - 2020</h1>
+        </header>
+        <div class="main">
+            {% block content %} {% endblock %}
+        </div>
+        <footer class="customFooter">
+            <p>О нас</p>
+        </footer>
     </div>
-    <footer class="customFooter">
-        <p>О нас</p>
-    </footer>
 </body>
 
 </html>
