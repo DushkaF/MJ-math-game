@@ -4,6 +4,7 @@ $(window).on("load", function () {
 
 $(document).ready(function () {
   console.log("Ready");
+  checkCookies();
 
   setInterval(function () {
     checkWaitRoom();
@@ -81,6 +82,18 @@ function profileExit() {
   });
 }
 
+function checkCookies() {
+  let login = $.cookie("login");
+  if (login != null) {
+    $("#icon").removeClass("d-none");
+    $("#icon-initials").text(function () {
+      return login[0].toUpperCase();
+    });
+    $("#icon-name").text(login);
+    $("#authorisation").addClass("d-none");
+  }
+}
+
 function logIn() {
   var form = $("form");
   if (!checkInput()) {
@@ -102,12 +115,7 @@ function logIn() {
     if (statusCode == 200) {
       // cookie
       $.cookie("login", login, { expires: 1, path: "/" });
-      $("#icon").removeClass("d-none");
-      $("#icon-initials").text(function () {
-        return login[0].toUpperCase();
-      });
-      $("#icon-name").text(login);
-      $("#authorisation").addClass("d-none");
+      checkCookies();
 
       $(".alert").addClass("d-none");
       let viewAlert = "#success";
@@ -139,6 +147,15 @@ function sendSignUp() {
   let loginSimbCheck = checkSimbol($("#login"));
   let passwordSimbCheck = checkSimbol($("#password"), loginSimbCheck);
   if (!loginSimbCheck || !passwordSimbCheck) {
+    return;
+  }
+  if ($("#login").val().length <= 16) {
+    $(".alert").addClass("d-none");
+    $("#login").removeClass("is-invalid");
+  } else {
+    $("#login").addClass("is-invalid");
+    $(".alert").removeClass("d-none");
+    $(".alert").text("Логин слишком длинный!");
     return;
   }
   if (!checkPass()) {

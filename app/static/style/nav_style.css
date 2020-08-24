@@ -1,0 +1,29 @@
+.navbar {
+    position: relative;
+    width: 100%;
+}
+
+.nav-item {
+    transition: background 0.5s ease;
+}
+
+.nav-item:hover {
+    background-color: rgb(172, 192, 185);
+}
+
+.icon {
+    position: absolute;
+    right: 5%;
+    width: 7vw;
+    height: 90%;
+}
+
+.inner-icon {}
+
+#icon-initials {
+    background-color: purple;
+    color: snow;
+    padding: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+}
