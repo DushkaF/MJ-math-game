@@ -53,7 +53,7 @@ def room(count):
     return "Push in room " + count + " people"
 
 
-@app.route('/waitRoom', methods=['GET'])
+@app.route('/waitRoomCount', methods=['GET'])
 def waited():
     global waiters
     return jsonify({'count': waiters})
@@ -61,8 +61,13 @@ def waited():
 
 @app.route('/exit')
 def prifExit():
-    session.pop('token', None)  # удаление данных о посещениях
-    return jsonify({'code': 200})
+    exitStatus = {}
+    if 'token' in session:
+        session.pop('token', None)  # удаление данных о посещениях
+        exitStatus = {'code': 200}
+    else:
+        exitStatus = {'code': 404}
+    return jsonify(exitStatus)
 
 
 @app.route('/visits-counter/')
@@ -78,3 +83,11 @@ def visits():
 def delete_visits():
     session.pop('visits', None)  # удаление данных о посещениях
     return 'Visits deleted'
+
+@app.route('/isToken')
+def isToken():
+    if 'token' in session:
+        exitStatus = {'code': 200}
+    else:
+        exitStatus = {'code': 401}
+    return jsonify(exitStatus)

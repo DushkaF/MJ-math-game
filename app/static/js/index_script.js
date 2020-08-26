@@ -6,6 +6,11 @@ $(document).ready(function () {
   console.log("Ready");
   checkCookies();
 
+  $(document).on("click", "#toWaitRoom", function () {
+    console.log("go to wait");
+    goToWaitRoom();
+    return false;
+  });
   setInterval(function () {
     checkWaitRoom();
   }, 5000);
@@ -31,7 +36,7 @@ $(document).ready(function () {
 });
 
 function checkWaitRoom() {
-  $.get("/waitRoom", function (data) {
+  $.get("/waitRoomCount", function (data) {
     let img = $("#MJ-label");
     if (
       data["count"] > 0 &&
@@ -42,6 +47,14 @@ function checkWaitRoom() {
       img.attr("src", img.attr("src-is-empty"));
     }
     window.lastStateRoom = data["count"];
+  });
+}
+
+function goToWaitRoom() {
+  $.get("/isToken", function (data) {
+    if (data["code"] == 200) {
+      location.href = "/waitRoom";
+    }
   });
 }
 
@@ -74,17 +87,26 @@ function loadContentDiv(href, id, hideFunc, endFunc) {
 
 function profileExit() {
   $.get("/exit", function (data) {
-    if (data["code"] == 200) {
-      $("#icon").addClass("d-none");
-      $("#authorisation").removeClass("d-none");
-      $.removeCookie("login");
-    }
+    $("#icon").addClass("d-none");
+    $("#authorisation").removeClass("d-none");
+    $.removeCookie("login");
   });
 }
 
 function checkCookies() {
   let login = $.cookie("login");
-  if (login != null) {
+  var checkedServerToken = false;
+  $.ajax({
+    url: "/isToken",
+    success: function (data) {
+      // не забываем узнать наличие ключа от сервера
+      checkedServerToken = data["code"] == 200;
+      console.log(checkedServerToken);
+    },
+    async: false,
+  });
+  console.log(checkedServerToken);
+  if (login != null && checkedServerToken) {
     $("#icon").removeClass("d-none");
     $("#icon-initials").text(function () {
       return login[0].toUpperCase();

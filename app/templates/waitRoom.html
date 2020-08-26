@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/waitRoom_style.css') }}" type="text/css" />
+{% endblock %}
+{% block scrypt %}
+<script src="{{ url_for('static', filename='js/waitRoom_script.js') }}"></script>
+{% endblock %}
+{% block title %} Main Page {% endblock %} {% block content %}
+
+
+<!--{% include 'navbar.html' %}-->
+
+<div class="wrapper">
+    <div id="waitContent">
+        <h3 class="alert alert-info">Ожидайте оппонента, как только он появится, Вы увидите уведомление</h3>
+        <div class="alert alert-warning" id="time">2:00</div>
+        <button id="exit" type="button" class="btn btn-outline-danger btn-lg no-radius">Выход из зала ожидания</button>
+    </div>
+</div>
+
+{% endblock %}
