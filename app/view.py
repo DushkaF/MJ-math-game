@@ -1,9 +1,10 @@
 from app import app, waiters
-from flask import render_template, send_file
-
+from flask import render_template, send_file, session, abort
 
 @app.route("/")
-def index():
+@app.route("/<data>")
+@app.route("/<data>/<data1>")
+def index(data="", data1=""):
     return render_template("index.html")
 
 
@@ -20,4 +21,7 @@ def statics(dir, file):
 
 @app.route("/waitRoom")
 def waitRoom():
-    return render_template("waitRoom.html")
+    if 'token' in session:
+        return render_template("waitRoom.html")
+    else:
+        return abort(404)

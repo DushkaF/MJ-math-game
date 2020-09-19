@@ -1,5 +1,5 @@
 $(window).on("load", function () {
-  $("#firstLook").trigger("click");
+  showContentByURL();
 });
 
 $(document).ready(function () {
@@ -15,7 +15,7 @@ $(document).ready(function () {
     checkWaitRoom();
   }, 5000);
 
-  $(".navClickable").click(function () {
+  $(document).on("click", ".navClickable", function () {
     return loadNavDiv($(this));
   });
 
@@ -33,6 +33,26 @@ $(document).ready(function () {
     profileExit();
     return false;
   });
+
+  $(document).on("click", ".to-user", function () {
+    setLocation("/user/" + $.cookie("login"));
+    showContentByURL();
+    return false;
+  });
+
+  $(document).on("click", ".to-main", function () {
+    setLocation("/");
+    return false;
+  });
+
+  $(window).bind("hashchange", function () {
+    console.log("change");
+  });
+
+  window.onhashchange = function () {
+    var what_to_do = document.location.href;
+    console.log(what_to_do);
+  };
 });
 
 function checkWaitRoom() {
@@ -59,29 +79,28 @@ function goToWaitRoom() {
 }
 
 function loadNavDiv(doc) {
-  loadContentDiv(doc.attr("href"), "#navContent", true, showNewContent());
-  function showNewContent() {
+  loadContentDiv(doc.attr("href"), "#navContent", true, function () {
     $("#navContent").show("normal");
-  }
+  });
   return false;
 }
 
 function loadContentDiv(href, id, hideFunc, endFunc) {
-  var toLoad = href + id;
+  var toLoad = href;
   if (hideFunc) {
     $(id).hide("fast", loadContent);
   } else {
     loadContent();
   }
   function loadContent() {
-    $.get(
-      toLoad,
-      function (data) {
+    $.ajax({
+      url: toLoad,
+      success: function (data) {
         $(id).replaceWith(data);
+        endFunc();
       },
-      "",
-      endFunc
-    );
+      async: false,
+    });
   }
 }
 
@@ -272,4 +291,53 @@ function checkSimbol(obj, err = true) {
     $(".alert").text("Поле содержит недопустимые символы!");
     return false;
   }
+}
+
+//изменение url
+function setLocation(curLoc) {
+  try {
+    history.pushState(null, null, curLoc);
+    return;
+  } catch (e) {}
+  location.hash = curLoc;
+}
+
+function showContentByURL() {
+  var url = document.location.pathname.substring(1).split("/");
+  console.log("url ", url);
+  switch (url[0]) {
+    case "user":
+      showUserContent();
+      break;
+    case "":
+      $("#firstLook").trigger("click");
+    default:
+      break;
+  }
+}
+
+function showUserContent() {
+  loadContentDiv($(".to-user").attr("href"), "#navContent", true, function () {
+    showNewContent();
+    loadUserInfo();
+  });
+  function showNewContent() {
+    $("#navContent").show("normal");
+  }
+}
+
+function loadUserInfo() {
+  var url = document.location.pathname.substring(1).split("/");
+  var sendData = { username: url[1] };
+  $.post("/getUser", sendData, function (data) {
+    var statusCode = data["code"];
+    if (statusCode == 200) {
+      $("#user-bio").replaceWith(data["bio"]);
+      $("#rank").replaceWith(data["rank"]);
+      $("#user-icon-initials").text(function () {
+        return data["username"][0].toUpperCase();
+      });
+      $("#user-icon-name").text(data["username"]);
+    }
+  });
 }

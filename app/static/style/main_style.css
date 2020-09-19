@@ -12,6 +12,8 @@
     padding: 5px;
     width: 40%;
     min-height: 80%;
+    //height: 1px;
+    /* костыль для взятия дочкой высоты этого же болка */
     background-color: rgb(230, 239, 250);
     border-radius: 5px;
     display: flex;
