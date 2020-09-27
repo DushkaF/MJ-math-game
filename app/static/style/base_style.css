@@ -17,7 +17,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 0;
-    padding-top: 20vh;
+    padding-top: 15vh;
     margin: 0;
     font-family: var(--font-sans);
 }
@@ -30,7 +30,7 @@ body {
 
 header {
     background: rgb(242, 246, 250);
-    height: 20vh;
+    height: 15vh;
     width: 100%;
     position: fixed;
     top: 0;
@@ -39,20 +39,23 @@ header {
 }
 
 header>h1 {
+    white-space: nowrap;
+    /* Запрещаем перенос текста */
     text-align: center;
-    position: absolute;
+    position: relative;
     left: 20%;
     width: 60%;
-    top: 40%;
+    top: 30%;
     height: 20%;
     margin-top: auto;
     margin-bottom: auto;
     font-family: Cambridge Round W01 Bold;
-    font-size: 3.2vw;
+    font-size: min(5vh, 3.2vw);
 }
 
 header>a {
     position: absolute;
+    left: 2%;
     height: 100%;
     padding: 1vh;
 }
@@ -60,6 +63,9 @@ header>a {
 #MJ-label {
     height: 100%;
     border-radius: 50%;
+}
+
+.shine {
     box-shadow: 0 0 17px rgb(50, 89, 197);
     /* Параметры теней */
 }
@@ -89,4 +95,38 @@ footer>p {
 
 .no-radius {
     border-radius: 0;
+}
+
+#icon-wrapper {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    height: 100%;
+    min-width: 10%;
+    max-width: 20%;
+    width: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#icon {
+    width: 100%;
+}
+
+#dropdownMenuButton {
+    background-color: #008eff;
+    border-radius: 7rem;
+    height: 70%;
+    border: none;
+    padding: 10%;
+}
+
+.inner-icon {
+    margin: 5%;
+}
+
+#icon-name {
+    font-size: 2vh;
+    margin-right: 10%;
 }

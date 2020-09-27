@@ -29,19 +29,4 @@
             </li>
         </ul>
     </div>
-    <div class="dropdown d-none" id="icon">
-        <div class="btn btn-secondary btn-lg d-flex justify-content-around align-items-center p-1" data-display="static"
-            type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="inner-icon" id="icon-initials"></div>
-            <div class="inner-icon" id="icon-name"></div>
-        </div>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="to-user dropdown-item"
-                href="{{ url_for('static', filename='user_content/userMain.html') }}">Профиль</a>
-            <a class="to-user dropdown-item"
-                href="{{ url_for('static', filename='user_content/userMain.html') }}">Статистика</a>
-            <div class=" dropdown-divider"></div>
-            <a class="to-main dropdown-item" id="exit" href="#">Выход</a>
-        </div>
-    </div>
 </nav>

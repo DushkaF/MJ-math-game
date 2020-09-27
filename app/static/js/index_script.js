@@ -63,8 +63,10 @@ function checkWaitRoom() {
       (window.lastStateRoom <= 0 || window.lastStateRoom == undefined)
     ) {
       img.attr("src", img.attr("src-is-any"));
+      img.addClass("shine");
     } else if (data["count"] <= 0 && window.lastStateRoom > 0) {
       img.attr("src", img.attr("src-is-empty"));
+      img.removeClass("shine");
     }
     window.lastStateRoom = data["count"];
   });
@@ -127,9 +129,6 @@ function checkCookies() {
   console.log(checkedServerToken);
   if (login != null && checkedServerToken) {
     $("#icon").removeClass("d-none");
-    $("#icon-initials").text(function () {
-      return login[0].toUpperCase();
-    });
     $("#icon-name").text(login);
     $("#authorisation").addClass("d-none");
   }
@@ -160,7 +159,12 @@ function logIn() {
 
       $(".alert").addClass("d-none");
       let viewAlert = "#success";
-      loadContentDiv($(viewAlert).attr("href"), "#navContent", false);
+      loadContentDiv(
+        $(viewAlert).attr("href"),
+        "#navContent",
+        false,
+        function () {}
+      );
 
       let delay = setTimeout(function () {
         loadNextPage();
