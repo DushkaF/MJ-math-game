@@ -1,3 +1,5 @@
+var lengthOfUsername = 12;
+
 $(window).on("load", function () {
   showContentByURL();
 });
@@ -194,7 +196,7 @@ function sendSignUp() {
   if (!loginSimbCheck || !passwordSimbCheck) {
     return;
   }
-  if ($("#login").val().length <= 16) {
+  if ($("#login").val().length <= lengthOfUsername) {
     $(".alert").addClass("d-none");
     $("#login").removeClass("is-invalid");
   } else {
